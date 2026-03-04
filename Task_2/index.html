@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modern Stopwatch</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+        }
+
+        .stopwatch {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 380px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        #display {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 45px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 18px;
+            margin: 6px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .start { background: #00c853; color: white; }
+        .pause { background: #ffab00; color: white; }
+        .reset { background: #d50000; color: white; }
+        .lap { background: #2962ff; color: white; }
+
+        button:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        ul li {
+            background: rgba(255,255,255,0.3);
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* Scrollbar Styling */
+        ul::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ul::-webkit-scrollbar-thumb {
+            background: #fff;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="stopwatch">
+        <h2>STOPWATCH</h2>
+        <div id="display">00:00:00</div>
+
+        <div class="buttons">
+            <button class="start" onclick="start()">Start</button>
+            <button class="pause" onclick="pause()">Pause</button>
+            <button class="reset" onclick="reset()">Reset</button>
+            <button class="lap" onclick="lap()">Lap</button>
+        </div>
+
+        <ul id="laps"></ul>
+    </div>
+
+    <script>
+        let timer;
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+        let running = false;
+
+        function updateDisplay() {
+            let h = hours < 10 ? "0" + hours : hours;
+            let m = minutes < 10 ? "0" + minutes : minutes;
+            let s = seconds < 10 ? "0" + seconds : seconds;
+            document.getElementById("display").innerText = h + ":" + m + ":" + s;
+        }
+
+        function start() {
+            if (!running) {
+                running = true;
+                timer = setInterval(function() {
+                    seconds++;
+                    if (seconds == 60) {
+                        seconds = 0;
+                        minutes++;
+                    }
+                    if (minutes == 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                    updateDisplay();
+                }, 1000);
+            }
+        }
+
+        function pause() {
+            running = false;
+            clearInterval(timer);
+        }
+
+        function reset() {
+            running = false;
+            clearInterval(timer);
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updateDisplay();
+            document.getElementById("laps").innerHTML = "";
+        }
+
+        function lap() {
+            if (running) {
+                let lapTime = document.getElementById("display").innerText;
+                let li = document.createElement("li");
+                li.textContent = "Lap Time: " + lapTime;
+                document.getElementById("laps").appendChild(li);
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Light Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:#a78bfa;
+    --secondary:#fbcfe8;
+    --accent:#93c5fd;
+    --bg:#fdfcff;
+    --card:#ffffff;
+    --text:#374151;
+    --transition:0.4s ease;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+header{
+    position:fixed;
+    width:100%;
+    background:white;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    z-index:1000;
+}
+
+.logo{
+    font-weight:700;
+    color:var(--primary);
+}
+
+nav a{
+    text-decoration:none;
+    margin-left:20px;
+    color:var(--text);
+    font-weight:500;
+    transition:var(--transition);
+}
+
+nav a:hover{
+    color:var(--primary);
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,var(--secondary),var(--accent));
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.hero span{
+    color:#6d28d9;
+}
+
+.hero p{
+    max-width:500px;
+}
+
+/* PHOTO BOX */
+.photo-container{
+    margin-top:30px;
+    text-align:center;
+}
+
+.photo-box{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    overflow:hidden;
+    margin:auto;
+    cursor:pointer;
+    position:relative;
+}
+
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.upload-text{
+    font-size:14px;
+    margin-top:10px;
+    color:#555;
+}
+
+/* BUTTON */
+.btn{
+    margin-top:20px;
+    padding:10px 25px;
+    background:white;
+    border:none;
+    border-radius:25px;
+    font-weight:600;
+    cursor:pointer;
+    transition:var(--transition);
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* SECTIONS */
+section{
+    padding:100px 40px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-size:30px;
+    color:var(--primary);
+}
+
+/* CARDS */
+.card{
+    background:var(--card);
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.05);
+    transition:var(--transition);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+/* CONTACT */
+.contact{
+    text-align:center;
+}
+
+.contact input, .contact textarea{
+    width:100%;
+    max-width:500px;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ddd;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:var(--primary);
+    color:white;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    header{
+        padding:15px 20px;
+    }
+    section{
+        padding:80px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">MyPortfolio</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Hi, I'm <span>Your Name</span></h1>
+    <p>Creative Web Developer building beautiful and user-friendly websites.</p>
+
+    <!-- Photo Upload Box -->
+    <div class="photo-container">
+        <label for="upload">
+            <div class="photo-box">
+                <img id="profilePic" src="https://via.placeholder.com/180" alt="Profile Photo">
+            </div>
+        </label>
+        <input type="file" id="upload" accept="image/*" hidden>
+        <div class="upload-text">Click photo to upload your image</div>
+    </div>
+
+    <button class="btn" onclick="scrollToSection('projects')">View My Work</button>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="card">
+        <p>I am a passionate web developer who loves designing soft, modern and interactive websites. I focus on clean UI and excellent user experience.</p>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="grid">
+        <div class="card">HTML</div>
+        <div class="card">CSS</div>
+        <div class="card">JavaScript</div>
+        <div class="card">React</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+        <div class="card">Tic Tac Toe Game</div>
+        <div class="card">Portfolio Website</div>
+        <div class="card">To-Do App</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <br>
+    <button class="btn" onclick="sendMessage()">Send Message</button>
+</section>
+
+<footer>
+    © 2026 Your Name | Designed with Soft Light Theme
+</footer>
+
+<script>
+// Image Upload Preview
+document.getElementById("upload").addEventListener("change", function(event){
+    const reader = new FileReader();
+    reader.onload = function(){
+        document.getElementById("profilePic").src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+});
+
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function sendMessage(){
+    alert("Thank you! Your message has been received.");
+}
+</script>
+
+</body>
+</html>

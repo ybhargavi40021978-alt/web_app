@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Navigation Menu</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            z-index: 1000;
+        }
+
+        /* When scrolled */
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Effect */
+        nav ul li a:hover {
+            color: #ff6f91;
+            letter-spacing: 1px;
+        }
+
+        /* ================= SECTIONS ================= */
+        section {
+            height: 100vh;
+            padding-top: 120px;
+            text-align: center;
+            font-size: 34px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .section1 { background: linear-gradient(to right, #fbc2eb, #a6c1ee); }
+        .section2 { background: linear-gradient(to right, #d4fc79, #96e6a1); }
+        .section3 { background: linear-gradient(to right, #fddb92, #d1fdff); }
+        .section4 { background: linear-gradient(to right, #ffecd2, #fcb69f); }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sections -->
+    <section id="home" class="section1">Home Section</section>
+    <section id="about" class="section2">About Section</section>
+    <section id="services" class="section3">Services Section</section>
+    <section id="contact" class="section4">Contact Section</section>
+
+    <!-- JavaScript -->
+    <script>
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+
+</body>
+</html>
